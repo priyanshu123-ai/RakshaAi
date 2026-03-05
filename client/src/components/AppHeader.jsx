@@ -1,6 +1,16 @@
-import { Shield } from "lucide-react";
+import { Shield, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const AppHeader = ({ mode, onModeChange }) => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <header className="flex items-center justify-between px-5 py-4">
       <div className="flex items-center gap-2.5">
@@ -16,26 +26,47 @@ const AppHeader = ({ mode, onModeChange }) => {
         </span>
       </div>
 
-      <div className="flex items-center bg-slate-100 rounded-full p-1">
-        <button
-          onClick={() => onModeChange("external")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${mode === "external"
-              ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm"
-              : "text-slate-500 hover:text-slate-900"
-            }`}
-        >
-          External
-        </button>
+      <div className="flex items-center gap-4">
+        {token && onModeChange && (
+          <div className="flex items-center bg-slate-100 rounded-full p-1">
+            <button
+              onClick={() => onModeChange("external")}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${mode === "external"
+                ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm"
+                : "text-slate-500 hover:text-slate-900"
+                }`}
+            >
+              External
+            </button>
 
-        <button
-          onClick={() => onModeChange("internal")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${mode === "internal"
-              ? "bg-gradient-to-r from-violet-500 to-pink-600 text-white shadow-sm"
-              : "text-slate-500 hover:text-slate-900"
-            }`}
-        >
-          Internal
-        </button>
+            <button
+              onClick={() => onModeChange("internal")}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${mode === "internal"
+                ? "bg-gradient-to-r from-violet-500 to-pink-600 text-white shadow-sm"
+                : "text-slate-500 hover:text-slate-900"
+                }`}
+            >
+              Internal
+            </button>
+          </div>
+        )}
+
+        {token ? (
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            <span className="hidden sm:inline">Logout</span>
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="px-4 py-2 text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 rounded-xl shadow-md transition-all transform hover:-translate-y-0.5"
+          >
+            Register / Login
+          </Link>
+        )}
       </div>
     </header>
   );

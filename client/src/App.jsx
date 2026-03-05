@@ -9,15 +9,28 @@ import HeatmapPage from './pages/HeatmapPage'
 import EvidencePage from './pages/EvidencePage'
 import DisguiseMode from './pages/DisguiseMode'
 import SettingsPage from './pages/SettingsPage'
+import { Navigate } from 'react-router-dom'
 
 import Auth from './pages/Auth'
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path="/login" element={<Auth />} />
-        <Route element={<AppLayout />}>
+        <Route element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }>
           <Route path='/' element={<Index />} />
           <Route path="/safe-journey" element={<SafeJourney />} />
           <Route path="/sos" element={<SOSPage />} />
