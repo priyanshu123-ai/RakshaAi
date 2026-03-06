@@ -9,6 +9,7 @@ import HeatmapPage from './pages/HeatmapPage'
 import EvidencePage from './pages/EvidencePage'
 import DisguiseMode from './pages/DisguiseMode'
 import SettingsPage from './pages/SettingsPage'
+import CommunityPage from './pages/CommunityPage'
 import { Navigate } from 'react-router-dom'
 
 import Auth from './pages/Auth'
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/evidence" element={<EvidencePage />} />
           <Route path="/disguise" element={<DisguiseMode />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/community" element={<CommunityPage />} />
         </Route>
       </Routes>
     </div>

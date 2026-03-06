@@ -51,3 +51,47 @@ export const sendLoginEmail = async (email, name) => {
         console.error("Error sending email:", error);
     }
 };
+
+export const sendSOSEmail = async (contacts, userName, locationUrl) => {
+    try {
+        const emails = contacts.map(c => c.email).filter(Boolean);
+        if (emails.length === 0) return;
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: emails.join(","),
+            subject: `🚨 EMERGENCY SOS from ${userName} 🚨`,
+            html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 2px solid #ef4444; border-radius: 10px; overflow: hidden;">
+          <div style="background-color: #ef4444; padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 28px;">🚨 SOS ALERT 🚨</h1>
+          </div>
+          <div style="padding: 30px; background-color: #ffffff;">
+            <h2 style="color: #333333; margin-top: 0;">Emergency from ${userName}</h2>
+            <p style="color: #555555; line-height: 1.6; font-size: 16px;">
+              <strong>${userName}</strong> has triggered an SOS alert from the Raksha application. They may be in danger and need immediate assistance.
+            </p>
+            <div style="margin-top: 25px; padding: 15px; background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; text-align: center;">
+              <p style="margin: 0; color: #991b1b; font-weight: bold; font-size: 18px;">
+                View Last Known Map Location:
+              </p>
+              <a href="${locationUrl}" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background-color: #ef4444; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">
+                Open Coordinates
+              </a>
+            </div>
+          </div>
+          <div style="background-color: #111827; padding: 15px; text-align: center;">
+            <p style="color: #9ca3af; font-size: 12px; margin: 0;">
+              This is an automated emergency dispatch from the Raksha App.
+            </p>
+          </div>
+        </div>
+      `,
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log("SOS Email sent: " + info.response);
+    } catch (error) {
+        console.error("Error sending SOS email:", error);
+    }
+};

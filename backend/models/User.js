@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        emergencyContacts: [
+            {
+                name: String,
+                email: String,
+                phone: String,
+                relation: String,
+            }
+        ]
     },
     { timestamps: true }
 );

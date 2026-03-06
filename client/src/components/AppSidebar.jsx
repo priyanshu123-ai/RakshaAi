@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   Shield, LayoutDashboard, Navigation, AlertTriangle, Users,
   Map, Camera, EyeOff, Settings, ChevronLeft, ChevronRight,
-  Smartphone, Volume2, Mic, Fingerprint, FileText, Radio
+  Smartphone, Volume2, Mic, Fingerprint, FileText, Radio, MessageCircle
 } from "lucide-react";
 import { useState } from "react";
 
@@ -12,6 +12,7 @@ const navItems = [
   { to: "/safe-journey", icon: Navigation, label: "Safe Journey" },
   { to: "/sos", icon: AlertTriangle, label: "SOS Triggers" },
   { to: "/inner-circle", icon: Users, label: "Inner Circle" },
+  { to: "/community", icon: MessageCircle, label: "Community" },
   { to: "/heatmap", icon: Map, label: "Safety Heatmap" },
   { to: "/evidence", icon: Camera, label: "Evidence Capture" },
   { to: "/disguise", icon: EyeOff, label: "Disguise Mode" },
@@ -53,8 +54,8 @@ const AppSidebar = () => {
               key={item.to}
               to={item.to}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${isActive
-                  ? "bg-rose-50 text-rose-700 shadow-md shadow-rose-500/10"
-                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+                ? "bg-rose-50 text-rose-700 shadow-md shadow-rose-500/10"
+                : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                 }`}
             >
               <item.icon className={`w-5 h-5 shrink-0 ${isActive ? "text-rose-500" : ""}`} />

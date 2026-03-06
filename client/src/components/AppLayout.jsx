@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import AppSidebar from "./AppSidebar";
 import AppTopBar from "./AppTopBar";
+import GlobalVoiceButton from "./GlobalVoiceButton";
 
 const AppLayout = () => {
   return (
@@ -12,6 +13,8 @@ const AppLayout = () => {
           <Outlet />
         </main>
       </div>
+      {/* Global floating voice button — visible on every page */}
+      <GlobalVoiceButton />
     </div>
   );
 };
