@@ -156,9 +156,9 @@ const InnerCirclePage = () => {
         </motion.div>
       )}
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        <motion.div variants={item} className="col-span-2 space-y-3">
+        <motion.div variants={item} className="lg:col-span-2 space-y-3">
 
           {contacts.map((contact) => (
             <div

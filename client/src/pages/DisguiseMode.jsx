@@ -373,7 +373,7 @@ const DisguiseMode = () => {
       </div>
 
       {/* Skin cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Calculator preview */}
         <button onClick={() => activateDisguise("calculator")}
           className={`bg-black rounded-3xl p-5 text-left border-2 transition-all group ${skin === "calculator" ? "border-orange-500" : "border-transparent hover:border-orange-400"}`}>

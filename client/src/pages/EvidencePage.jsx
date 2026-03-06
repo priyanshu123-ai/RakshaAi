@@ -395,11 +395,11 @@ const EvidencePage = () => {
         )}
       </AnimatePresence>
 
-      <div className="grid grid-cols-3 gap-6">
-        <motion.div variants={item} className="col-span-2 space-y-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div variants={item} className="lg:col-span-2 space-y-5">
 
           {/* Capture Controls */}
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Silent Photo", icon: Camera, action: takePhoto },
               { label: "Audio Record", icon: audioRecording ? Square : Mic, action: audioRecording ? stopAudio : startAudio, active: audioRecording },

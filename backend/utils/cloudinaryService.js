@@ -1,5 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // Configure once when module loads
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -7,6 +10,9 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+console.log("Cloud Name:", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("API Key:", process.env.CLOUDINARY_API_KEY);
+console.log("API Secret:", process.env.CLOUDINARY_API_SECRET);
 /**
  * Upload a Buffer to Cloudinary using base64 data URI.
  * This is simpler and more reliable than upload_stream.

@@ -33,10 +33,10 @@ const HeatmapPage = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Map */}
-        <motion.div variants={item} className="col-span-2 space-y-4">
+        <motion.div variants={item} className="lg:col-span-2 space-y-4">
 
           <div className="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
 
@@ -93,11 +93,10 @@ const HeatmapPage = () => {
               <button
                 key={f}
                 onClick={() => setRiskFilter(f)}
-                className={`px-3 py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
-                  riskFilter === f
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-semibold transition-all ${riskFilter === f
                     ? "bg-rose-500 text-white"
                     : "bg-slate-100 text-slate-500"
-                }`}
+                  }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
               </button>
@@ -120,13 +119,12 @@ const HeatmapPage = () => {
                   </h4>
 
                   <span
-                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                      zone.risk === "high"
+                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${zone.risk === "high"
                         ? "bg-red-500/10 text-red-500"
                         : zone.risk === "medium"
-                        ? "bg-amber-500/10 text-amber-500"
-                        : "bg-emerald-500/10 text-emerald-500"
-                    }`}
+                          ? "bg-amber-500/10 text-amber-500"
+                          : "bg-emerald-500/10 text-emerald-500"
+                      }`}
                   >
                     {zone.risk}
                   </span>

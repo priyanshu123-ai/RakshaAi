@@ -40,7 +40,7 @@ const Index = () => {
       </motion.div>
 
       {/* Stats */}
-      <motion.div variants={item} className="grid grid-cols-4 gap-4">
+      <motion.div variants={item} className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {statCards.map((stat) => (
           <div key={stat.label} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-md">
             <div className="flex items-center justify-between mb-3">
@@ -54,11 +54,11 @@ const Index = () => {
         ))}
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Quick Actions */}
-        <motion.div variants={item} className="col-span-2 space-y-4">
+        <motion.div variants={item} className="lg:col-span-2 space-y-4">
           <h2 className="text-lg font-display font-semibold text-slate-900">Quick Actions</h2>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {quickActions.map((action) => (
               <Link
                 key={action.to}

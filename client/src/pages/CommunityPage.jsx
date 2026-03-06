@@ -458,7 +458,7 @@ const CommunityPage = () => {
             </motion.div>
 
             {/* Stats */}
-            <motion.div variants={item} className="grid grid-cols-3 gap-4">
+            <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                     { label: "Stories Shared", value: posts.length },
                     { label: "This Week", value: posts.filter(p => Date.now() - new Date(p.createdAt) < 7 * 86400000).length },

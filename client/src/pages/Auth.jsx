@@ -17,6 +17,25 @@ const Auth = () => {
         setIsLoading(true);
         setMessage("");
 
+        // ── Demo account — works without backend ──────────────────────
+        const DEMO_EMAIL = "priyanshukumarpriyanshu015@gmail.com";
+        const DEMO_PASS = "1234";
+        if (isLogin && email.trim().toLowerCase() === DEMO_EMAIL && password === DEMO_PASS) {
+            const demoUser = {
+                _id: "demo_user_001",
+                name: "Priyanshu Kumar",
+                email: DEMO_EMAIL,
+                token: "demo_token_raksha_2026",
+            };
+            localStorage.setItem("token", demoUser.token);
+            localStorage.setItem("user", JSON.stringify(demoUser));
+            setMessage("✅ Welcome back, Priyanshu!");
+            setTimeout(() => navigate("/"), 800);
+            setIsLoading(false);
+            return;
+        }
+        // ─────────────────────────────────────────────────────────────
+
         const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
         const payload = isLogin ? { email, password } : { name, email, password };
 
@@ -48,6 +67,7 @@ const Auth = () => {
             setIsLoading(false);
         }
     };
+
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

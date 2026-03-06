@@ -18,9 +18,8 @@ const SettingsPage = () => {
   const Toggle = ({ enabled, onToggle }) => (
     <button
       onClick={onToggle}
-      className={`w-11 h-6 rounded-full flex items-center px-0.5 transition-all duration-300 ${
-        enabled ? "bg-emerald-500 justify-end" : "bg-slate-100 justify-start"
-      }`}
+      className={`w-11 h-6 rounded-full flex items-center px-0.5 transition-all duration-300 ${enabled ? "bg-emerald-500 justify-end" : "bg-slate-100 justify-start"
+        }`}
     >
       <div className="w-5 h-5 rounded-full bg-white shadow-sm" />
     </button>
@@ -68,7 +67,7 @@ const SettingsPage = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         {/* LEFT SIDE */}
 
@@ -194,7 +193,7 @@ const SettingsPage = () => {
             ].map((n) => (
               <div key={n} className="flex items-center justify-between">
                 <span className="text-sm text-slate-900">{n}</span>
-                <Toggle enabled={true} onToggle={() => {}} />
+                <Toggle enabled={true} onToggle={() => { }} />
               </div>
             ))}
           </Section>

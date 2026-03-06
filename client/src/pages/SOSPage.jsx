@@ -95,10 +95,10 @@ const SOSPage = () => {
         </span>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* SOS Button + Triggers */}
-        <div className="col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-4">
 
           {/* Big SOS Button */}
           <motion.div variants={item} className="bg-white rounded-2xl p-8 border border-slate-200 shadow-md flex flex-col items-center">
@@ -117,8 +117,8 @@ const SOSPage = () => {
                 onClick={triggerSOSApi}
                 disabled={sosActivated}
                 className={`relative z-10 w-36 h-36 rounded-full font-display font-bold text-2xl tracking-wider text-white shadow-lg shadow-rose-500/30 transition-all duration-300 ${sosActivated
-                    ? "bg-emerald-500 cursor-not-allowed"
-                    : "bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700"
+                  ? "bg-emerald-500 cursor-not-allowed"
+                  : "bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700"
                   }`}
               >
                 {sosActivated ? "SENT!" : "SOS"}
@@ -142,8 +142,8 @@ const SOSPage = () => {
                 key={f}
                 onClick={() => setFilter(f)}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${filter === f
-                    ? "bg-rose-500 text-white"
-                    : "bg-slate-100 text-slate-500 hover:text-slate-900"
+                  ? "bg-rose-500 text-white"
+                  : "bg-slate-100 text-slate-500 hover:text-slate-900"
                   }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)} Triggers
@@ -153,7 +153,7 @@ const SOSPage = () => {
           </motion.div>
 
           {/* Triggers Grid */}
-          <motion.div variants={item} className="grid grid-cols-2 gap-3">
+          <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
             {filtered.map((trigger) => {
 
@@ -164,8 +164,8 @@ const SOSPage = () => {
                   key={trigger.id}
                   onClick={() => toggle(trigger.id)}
                   className={`bg-white rounded-2xl p-4 border shadow-md cursor-pointer transition-all duration-200 ${enabled
-                      ? "border-rose-500/50 shadow-lg shadow-rose-500/10"
-                      : "border-slate-200 hover:border-rose-500/20"
+                    ? "border-rose-500/50 shadow-lg shadow-rose-500/10"
+                    : "border-slate-200 hover:border-rose-500/20"
                     }`}
                 >
 
@@ -173,8 +173,8 @@ const SOSPage = () => {
 
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center ${enabled
-                          ? "bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700"
-                          : "bg-slate-100"
+                        ? "bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700"
+                        : "bg-slate-100"
                         }`}
                     >
                       <trigger.icon
@@ -185,8 +185,8 @@ const SOSPage = () => {
 
                     <div
                       className={`w-10 h-5 rounded-full flex items-center px-0.5 transition-colors ${enabled
-                          ? "bg-emerald-500 justify-end"
-                          : "bg-slate-100 justify-start"
+                        ? "bg-emerald-500 justify-end"
+                        : "bg-slate-100 justify-start"
                         }`}
                     >
                       <div className="w-4 h-4 rounded-full bg-white shadow-sm" />
@@ -204,10 +204,10 @@ const SOSPage = () => {
 
                   <span
                     className={`inline-block mt-2 text-[10px] font-medium px-2 py-0.5 rounded-full ${trigger.category === "external"
-                        ? "bg-blue-500/10 text-blue-600"
-                        : trigger.category === "internal"
-                          ? "bg-purple-500/10 text-purple-600"
-                          : "bg-slate-100 text-slate-500"
+                      ? "bg-blue-500/10 text-blue-600"
+                      : trigger.category === "internal"
+                        ? "bg-purple-500/10 text-purple-600"
+                        : "bg-slate-100 text-slate-500"
                       }`}
                   >
                     {trigger.category === "both"
@@ -235,10 +235,10 @@ const SOSPage = () => {
               {chatHistory.map((msg, idx) => (
                 <div key={idx} className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}>
                   <div className={`max-w-[80%] px-3 py-2 rounded-xl text-sm ${msg.sender === "user"
-                      ? "bg-rose-500 text-white rounded-tr-none"
-                      : msg.sender === "system"
-                        ? "bg-slate-800 text-amber-400 border border-amber-500/30 text-xs w-full text-center rounded-xl"
-                        : "bg-slate-700 text-white rounded-tl-none"
+                    ? "bg-rose-500 text-white rounded-tr-none"
+                    : msg.sender === "system"
+                      ? "bg-slate-800 text-amber-400 border border-amber-500/30 text-xs w-full text-center rounded-xl"
+                      : "bg-slate-700 text-white rounded-tl-none"
                     }`}>
                     {msg.text}
                   </div>
