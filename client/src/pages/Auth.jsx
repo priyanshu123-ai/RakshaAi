@@ -18,7 +18,7 @@ const Auth = () => {
         setMessage("");
 
         // ── Demo account — works without backend ──────────────────────
-        const DEMO_EMAIL = "priyanshukumarpriyanshu015@gmail.com";
+        const DEMO_EMAIL = "user12@gmail.com";
         const DEMO_PASS = "1234";
         if (isLogin && email.trim().toLowerCase() === DEMO_EMAIL && password === DEMO_PASS) {
             const demoUser = {
