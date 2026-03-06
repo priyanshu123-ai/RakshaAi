@@ -1,19 +1,28 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Settings, User, Bell, Shield, Lock, Smartphone, Globe,
-  Moon, Volume2, Vibrate, Save, ChevronRight
+  Moon, Volume2, Vibrate, Save, ChevronRight, LogOut
 } from "lucide-react";
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
 const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
 
 const SettingsPage = () => {
+  const navigate = useNavigate();
   const [autoConfirm, setAutoConfirm] = useState(true);
   const [shakeDetect, setShakeDetect] = useState(true);
   const [voiceActivation, setVoiceActivation] = useState(false);
   const [locationSharing, setLocationSharing] = useState(true);
   const [silentMode, setSilentMode] = useState(false);
+  const [logoutConfirm, setLogoutConfirm] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   const Toggle = ({ enabled, onToggle }) => (
     <button
@@ -210,6 +219,45 @@ const SettingsPage = () => {
               </div>
             </div>
           </Section>
+
+          {/* Logout */}
+          <div className="bg-white rounded-2xl border border-red-200 shadow-md overflow-hidden">
+            <div className="p-4 border-b border-red-100">
+              <h3 className="font-display font-semibold text-sm text-red-600 flex items-center gap-2">
+                <LogOut className="w-4 h-4" />
+                Account
+              </h3>
+            </div>
+            <div className="p-4">
+              {!logoutConfirm ? (
+                <button
+                  onClick={() => setLogoutConfirm(true)}
+                  className="w-full py-3 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 font-semibold text-sm flex items-center justify-center gap-2 transition-colors border border-red-200"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-xs text-slate-600 text-center">Are you sure you want to logout?</p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setLogoutConfirm(false)}
+                      className="flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-slate-200 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-rose-600 text-white text-sm font-semibold hover:from-red-600 hover:to-rose-700 transition-all shadow-md"
+                    >
+                      Yes, Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
 
         </motion.div>
 
